@@ -10,19 +10,21 @@ function Editor({ value, handleChange, filename }) {
   return (
     <div className="editor-container">
       <div className="filename">{filename}</div>
-      <CodeMirror
-        className="editor"
-        value={value}
-        options={{
-          theme: "material",
-          mode: "javascript",
-          lineWrapping: true,
-        }}
-        height="100%"
-        extensions={javascript()}
-        theme={material}
-        onChange={handleChange}
-      />
+      <div className="editor-wrapper">
+        <CodeMirror
+          className="editor"
+          value={value}
+          options={{
+            theme: "material",
+            mode: "javascript",
+            lineWrapping: true,
+          }}
+          height="100%"
+          extensions={javascript()}
+          theme={material}
+          onChange={handleChange}
+        />
+      </div>
     </div>
   );
 }

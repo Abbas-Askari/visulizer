@@ -48,7 +48,12 @@ function App() {
           <div className="title">Output</div>
           <iframe ref={iFrameRef} srcDoc={doc}></iframe>
         </div>
-        <Sidebar run={run} setScript={setScript} setFilename={setFilename} />
+        <Sidebar
+          run={run}
+          setScript={setScript}
+          script={script}
+          setFilename={setFilename}
+        />
       </div>
     </>
   );

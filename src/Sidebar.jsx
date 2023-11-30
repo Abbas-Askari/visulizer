@@ -1,40 +1,55 @@
-import React from "react";
+import React, { useState } from "react";
 import "./sidebar.css";
 import Icon from "@mdi/react";
-import { mdiContentSave, mdiFileImport, mdiPlay } from "@mdi/js";
+import {
+  mdiContentSave,
+  mdiContentSavePlus,
+  mdiFileImport,
+  mdiPlay,
+} from "@mdi/js";
 
-function importFile(setScript, setFilename) {
-  var input = document.createElement("input");
-  input.type = "file";
-  input.onchange = (e) => {
-    var file = e.target.files[0];
+function Sidebar({ run, setScript, setFilename, script }) {
+  const [file, setFile] = useState();
 
-    var reader = new FileReader();
-    reader.readAsText(file, "UTF-8");
-    console.log(file);
-    reader.onload = (readerEvent) => {
-      var content = readerEvent.target.result;
-      setFilename(file.name);
-      setScript(content);
-    };
-  };
-  input.click();
-}
+  async function importFile() {
+    const handles = await window.showOpenFilePicker();
+    const newFile = handles[0];
+    setFile(newFile);
 
-function Sidebar({ run, setScript, setFilename }) {
+    const fileData = await newFile.getFile();
+    const code = await fileData.text();
+
+    setFilename(newFile.name);
+    setScript(code);
+  }
+
+  async function saveAs() {
+    const file = await window.showSaveFilePicker();
+    save(file);
+    setFile(file);
+  }
+
+  async function save(file) {
+    if (!file) return saveAs();
+    console.log({ file });
+    const writable = await file.createWritable();
+    await writable.write(script); // Assuming 'editor' is your editor instance
+    await writable.close();
+  }
+
   return (
     <div className="sidebar">
       <button onClick={run}>
         <Icon path={mdiPlay} size={1.4} />
       </button>
-      <button>
-        <Icon path={mdiContentSave} size={1.4} />
-      </button>
-      <button onClick={() => importFile(setScript, setFilename)}>
+      <button onClick={importFile}>
         <Icon path={mdiFileImport} size={1.4} />
       </button>
       <button>
-        <Icon path={mdiContentSave} size={1.4} />
+        <Icon path={mdiContentSave} size={1.4} onClick={() => save(file)} />
+      </button>
+      <button>
+        <Icon path={mdiContentSavePlus} size={1.4} onClick={saveAs} />
       </button>
     </div>
   );

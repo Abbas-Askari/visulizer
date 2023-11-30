@@ -5,26 +5,25 @@
   flex-direction: column;
   border-bottom: 2px solid #333;
   padding: 1rem;
-  max-width: 80%;
+  overflow: hidden;
+  /* max-width: 80%; */
 }
 
 .editor {
   flex: 1;
+  max-width: 100%;
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
-/* .editor .cm-scroller {
-  overflow-x: hidden;
-} */
-
-/* .editor .cm-content {
-  white-space: pre-wrap;
-  max-width: 100%;
-  overflow-x: visible;
-  height: 100%;
-} */
+.editor-wrapper {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  border-bottom-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
 
 .editor ::-webkit-scrollbar {
   background-color: transparent;
