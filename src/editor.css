@@ -1,0 +1,54 @@
+.editor-container {
+  grid-area: editor;
+
+  display: flex;
+  flex-direction: column;
+  border-bottom: 2px solid #333;
+  padding: 1rem;
+  max-width: 80%;
+}
+
+.editor {
+  flex: 1;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  overflow: hidden;
+}
+
+/* .editor .cm-scroller {
+  overflow-x: hidden;
+} */
+
+/* .editor .cm-content {
+  white-space: pre-wrap;
+  max-width: 100%;
+  overflow-x: visible;
+  height: 100%;
+} */
+
+.editor ::-webkit-scrollbar {
+  background-color: transparent;
+  width: 0.75em;
+  height: 0.75em;
+  padding-block: 1em;
+}
+
+.editor ::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 1rem;
+  width: 1em;
+}
+
+.editor * {
+  outline: none !important;
+}
+
+.filename {
+  background: #2e3235;
+  border-bottom: 2px solid #555;
+  text-align: center;
+  padding-top: 0.5rem;
+  padding-bottom: 0.25rem;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
