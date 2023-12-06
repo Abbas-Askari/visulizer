@@ -5,6 +5,17 @@ import Editor from "./Editor";
 import "./App.css";
 import Sidebar from "./Sidebar";
 
+let updateScript = "";
+let styleScript = "";
+
+fetch("http://localhost:5173/public/update.js")
+  .then((res) => res.text())
+  .then((data) => (updateScript = data));
+
+fetch("http://localhost:5173/public/style.lib.css")
+  .then((res) => res.text())
+  .then((data) => (styleScript = data));
+
 function App() {
   const [count, setCount] = useState(0);
   const iFrameRef = useRef();
@@ -17,10 +28,24 @@ function App() {
   });
   const [filename, setFilename] = useState("Untitled.js");
 
-  const doc = ` 
+  const doc =
+    updateScript && styleScript
+      ? ` 
     <html>
-      <body></body>
+      <body>
+        <div id="app"></div>
+        <div class='lines'></div>
+      </body>
+      <script type="module">${styleScript}</script>
+      <script>${updateScript}</script>
       <script>${script}</script>
+    </html>
+  `
+      : `
+    <html>
+      <body>
+        <div>Please Wait</div>
+      </body>
     </html>
   `;
   function run() {

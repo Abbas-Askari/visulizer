@@ -17,4 +17,11 @@
   color: inherit;
   cursor: pointer;
   padding: 0;
+  transition: all 0.15s ease;
+
+  &:hover {
+    scale: 1.02;
+    translate: 5% 0;
+    color: lightgreen;
+  }
 }

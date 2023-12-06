@@ -12,8 +12,6 @@
 .editor {
   flex: 1;
   max-width: 100%;
-  border-bottom-left-radius: 1rem;
-  border-bottom-right-radius: 1rem;
   /* overflow: hidden; */
 }
 
@@ -21,8 +19,8 @@
   flex: 1;
   display: flex;
   overflow: hidden;
-  border-bottom-right-radius: 1rem;
-  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 0.75rem;
+  border-bottom-left-radius: 0.75rem;
 }
 
 .editor ::-webkit-scrollbar {
@@ -48,6 +46,6 @@
   text-align: center;
   padding-top: 0.5rem;
   padding-bottom: 0.25rem;
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
+  border-top-left-radius: 0.75rem;
+  border-top-right-radius: 0.75rem;
 }
