@@ -35,6 +35,7 @@ function Sidebar({ run, setScript, setFilename, script }) {
     const writable = await file.createWritable();
     await writable.write(script); // Assuming 'editor' is your editor instance
     await writable.close();
+    setFilename(file.name);
   }
 
   return (

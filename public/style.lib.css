@@ -17,6 +17,7 @@
 body {
   margin: 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   min-width: 320px;
@@ -71,6 +72,7 @@ body {
   background-color: lightseagreen;
   border-radius: 50%;
   position: relative;
+  box-sizing: border-box;
   --w: 0px;
   &::after {
     /* transition: all 0.5s ease; */

@@ -6,15 +6,25 @@ import "./App.css";
 import Sidebar from "./Sidebar";
 
 let updateScript = "";
+let updateArrayScript = "";
 let styleScript = "";
+let styleArrayScript = "";
 
 fetch("http://localhost:5173/public/update.js")
   .then((res) => res.text())
   .then((data) => (updateScript = data));
 
+fetch("http://localhost:5173/public/watch.js")
+  .then((res) => res.text())
+  .then((data) => (updateArrayScript = data));
+
 fetch("http://localhost:5173/public/style.lib.css")
   .then((res) => res.text())
   .then((data) => (styleScript = data));
+
+fetch("http://localhost:5173/public/style.css")
+  .then((res) => res.text())
+  .then((data) => (styleArrayScript = data));
 
 function App() {
   const [count, setCount] = useState(0);
@@ -37,10 +47,12 @@ function App() {
         <div class='lines'></div>
       </body>
       <script type="module">${styleScript}</script>
+      <script type="module">${styleArrayScript}</script>
       <script>${updateScript}</script>
+      <script>${updateArrayScript}</script>
       <script>${script}</script>
-    </html>
-  `
+      </html>
+      `
       : `
     <html>
       <body>

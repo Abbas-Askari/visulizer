@@ -61,7 +61,6 @@ function drawLines(rootDiv) {
     const y = next.y; //current.y; // - next.y;
     const dx = current.x - x;
     const dy = current.y - y;
-    console.log({ x, y, dx, dy });
     const r = Math.sqrt((x - current.x) ** 2 + (y - current.y) ** 2);
     const angle = Math.atan2(dy, dx);
     const lineDiv = document.createElement("div");
@@ -93,12 +92,34 @@ function drawLines(rootDiv) {
   drawLines(rightNodeDiv);
 }
 
+function highlight(value) {
+  setTimeout(() => {
+    const node = document.querySelector(`.node[data-key="${value}"]`);
+    if (!node) return;
+    node.firstChild.animate(
+      [
+        { border: `0.25em solid lightseagreen` },
+        { border: `0.25em solid green` },
+        { border: `0.25em solid lightseagreen` },
+      ],
+      { duration: 800, easing: "ease-in-out" }
+      // { duration: 500, easing: "ease-in-out" }
+    );
+
+  }, time);
+  time += 1000;
+}
+
 function update(rt) {
   // function update(root) {
 
   const root = copy(rt);
   setValueAsKey(root);
   setTimeout(() => {
+    if (!root) {
+      const oldRoot = document.querySelector("#app");
+      oldRoot.innerHTML = "";
+    }
     console.log("Rendering");
     const treeNewDiv = document.createElement("div");
     const newRoot = render(root, treeNewDiv).querySelector(".node");
